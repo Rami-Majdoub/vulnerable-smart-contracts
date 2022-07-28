@@ -55,7 +55,7 @@ describe("Lock", function () {
       });
       
   	  const balanceBeforeWithdraw = await account.getBalance()
-      await contract.withdraw()
+      await contract.connect(account).withdraw()
       
       const balanceAfterWithdraw = await account.getBalance()
       
