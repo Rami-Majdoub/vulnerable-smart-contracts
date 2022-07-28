@@ -48,7 +48,6 @@ describe("Lock", function () {
   	  
   	  const [ account ] = accounts
   	  
-  	  const balanceBeforeSend = await account.getBalance()
       await account.sendTransaction({
     	  to: contract.address,
     	  value: ethers.utils.parseEther("1000"),
@@ -59,9 +58,7 @@ describe("Lock", function () {
       
       const balanceAfterWithdraw = await account.getBalance()
       
-      console.log({ balanceBeforeSend, balanceBeforeWithdraw, balanceAfterWithdraw })
-      
-      expect(balanceAfterWithdraw).to.be.above(0)
+      expect(balanceAfterWithdraw.sub(balanceBeforeWithdraw)).to.be.above(0)
   	})
   })
 })

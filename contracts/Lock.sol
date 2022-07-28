@@ -8,21 +8,30 @@ contract Lock {
 	
 	mapping(address => uint) public balanceOf;
 	
-	receive () external payable {
+	receive() external payable {
 		balanceOf[msg.sender] += msg.value;
 	}
 	
+	/**
+	* WARNING: this function is vulnerable (Reentrency)
+	*/
 	function withdraw() public {
 		require(balanceOf[msg.sender] > 0);
 		
-		console.log("1-", msg.sender.balance);
-		uint val = balanceOf[msg.sender];
+		uint senderBalance = balanceOf[msg.sender];
+		console.log(
+			"[Lock] withdraw: LockBalance: %s, SenderBalance: %s",
+			address(this).balance,
+			senderBalance
+		);
 
+		// uncomment the next line to secure contract funds
+		// balanceOf[msg.sender] = 0;
 		address payable sender = payable(msg.sender);
-		(bool success, ) = sender.call{value: val}("");
-		require(success);
-		console.log("2-", msg.sender.balance);
+		(bool success, ) = sender.call{value: senderBalance}("");
+		require(success, "could not send eth");
 		
+		// problem: the next line should be before sending
 		balanceOf[msg.sender] = 0;
 	}
 }

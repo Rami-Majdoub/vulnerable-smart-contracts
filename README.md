@@ -1,13 +1,14 @@
-# Sample Hardhat Project
-
-This project demonstrates a basic Hardhat use case. It comes with a sample contract, a test for that contract, and a script that deploys that contract.
-
-Try running some of the following tasks:
+# Vulnerable Smart Contracts
 
 ```shell
-npx hardhat help
+# local
 npx hardhat test
-GAS_REPORT=true npx hardhat test
-npx hardhat node
-npx hardhat run scripts/deploy.ts
+
+# deploy to rinkeby
+npx hardhat run scripts/deploy.ts --network rinkeby
+
+npx hardhat verify 0x1EE4AA2Ad03B759F5a72869dD032aC32Ed4007ae --network rinkeby --contract contracts/Lock.sol:Lock
+
+npx hardhat verify 0x6C937577f8FDB6804908738E165AEf5B60bd513b --network rinkeby --contract contracts/Stealer.sol:Stealer 0x1EE4AA2Ad03B759F5a72869dD032aC32Ed4007ae
+
 ```
