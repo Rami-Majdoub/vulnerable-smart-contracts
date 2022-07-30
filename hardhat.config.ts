@@ -100,6 +100,18 @@ const config: HardhatUserConfig = {
       url: process.env.API_KEY_PROVIDER_RINKEBY,
       accounts: [ process.env.ACCOUNT_PRIVATE_KEY || "" ]
     },
+    goerli: {
+      url: process.env.API_KEY_PROVIDER_GOERLI,
+      accounts: [ process.env.ACCOUNT_PRIVATE_KEY || "" ]
+    },
+    mumbai: {
+      url: process.env.API_KEY_PROVIDER_MUMBAI,
+      accounts: [ process.env.ACCOUNT_PRIVATE_KEY || "" ]
+    },
+    mainnet: {
+      url: process.env.API_KEY_PROVIDER_MAINNET,
+      accounts: [ process.env.ACCOUNT_PRIVATE_KEY || "" ]
+    },
     // used by hardhat test & node
     // when using hardhat node deploy with option --network localhost
     hardhat: {
