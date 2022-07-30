@@ -12,7 +12,7 @@ async function main() {
   ).deploy(lock.address)
   await stealer.deployed()
 
-  console.log(`lock: ${lock.address}, stealer: ${stealer.address}`);
+  console.log(`lock address: ${lock.address}\nstealer address: ${stealer.address}`);
 }
 
 // We recommend this pattern to be able to use async/await everywhere
